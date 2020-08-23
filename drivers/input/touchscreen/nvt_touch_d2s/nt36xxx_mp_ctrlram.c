@@ -1415,7 +1415,7 @@ static ssize_t nvt_test_result_read(struct file *file,char __user *buf, size_t s
 {
 	int cnt = 0;
 	char *page = NULL;
-	
+
 	page = kzalloc(16, GFP_KERNEL);
 	NVT_LOG("test_result have %d err",test_result);
 
@@ -1484,7 +1484,7 @@ static int32_t nvt_selftest_open(struct inode *inode, struct file *file)
 		 * Ex. nvt_pid = 500A
 		 *     mpcriteria = "novatek-mp-criteria-500A"
 		 */
-		snprintf(mpcriteria, PAGE_SIZE, "novatek-mp-criteria-%04X", ts->nvt_pid);
+		snprintf(mpcriteria, sizeof(mpcriteria), "novatek-mp-criteria-%04X", ts->nvt_pid);
 
 		nvt_mp_parse_dt(np, mpcriteria);
 	} else {
